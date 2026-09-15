@@ -1,0 +1,181 @@
+.hero {
+  display: grid;
+  grid-template-columns: minmax(240px, 0.8fr) minmax(0, 1.2fr);
+  align-items: center;
+  gap: 56px;
+  padding: 32px 0 72px;
+}
+
+.imageWrap {
+  width: min(100%, 380px);
+}
+
+.profileImage {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+  object-fit: cover;
+}
+
+.heroContent {
+  max-width: 680px;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--color-accent);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.hero h1 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 3rem;
+  line-height: 1.15;
+}
+
+.heroContent p {
+  margin: 20px 0 0;
+  color: var(--color-muted);
+  font-size: 1.0625rem;
+}
+
+.section {
+  padding: 48px 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.section h2,
+.cta h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.section p,
+.cta p {
+  max-width: 760px;
+  margin: 16px 0 0;
+  color: var(--color-muted);
+  font-size: 1.0625rem;
+}
+
+.skillsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.skillTag {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  color: var(--color-text);
+  padding: 10px 14px;
+  font-weight: 700;
+}
+
+.cta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  margin-top: 32px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-surface);
+  padding: 32px;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background-color 160ms ease, border-color 160ms ease,
+    color 160ms ease;
+}
+
+.primaryButton {
+  border: 1px solid var(--color-accent);
+  background: var(--color-accent);
+  color: #ffffff;
+}
+
+.primaryButton:hover,
+.primaryButton:focus {
+  border-color: var(--color-accent-dark);
+  background: var(--color-accent-dark);
+}
+
+.secondaryButton {
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+
+.secondaryButton:hover,
+.secondaryButton:focus {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.primaryButton:focus-visible,
+.secondaryButton:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 8px 0 48px;
+  }
+
+  .imageWrap {
+    width: min(100%, 320px);
+  }
+
+  .hero h1 {
+    font-size: 2.35rem;
+  }
+
+  .heroContent p,
+  .section p,
+  .cta p {
+    font-size: 1rem;
+  }
+
+  .section {
+    padding: 40px 0;
+  }
+
+  .section h2,
+  .cta h2 {
+    font-size: 1.75rem;
+  }
+
+  .cta {
+    align-items: flex-start;
+    flex-direction: column;
+    margin-top: 24px;
+    padding: 24px;
+  }
+}

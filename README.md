@@ -1,49 +1,59 @@
-<p align="center">
-  <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
-    <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
-  </a>
-</p>
-<h1 align="center">
-  Gatsby Minimal Starter
-</h1>
+# Mohadeseh Personal Website
 
-## 🚀 Quick start
+A personal portfolio and blog built with Gatsby.
 
-1.  **Create a Gatsby site.**
+## Features
 
-    Use the Gatsby CLI to create a new site, specifying the minimal starter.
+- Responsive personal website
+- About page
+- Gatsby blog
+- Multiple articles
+- Local article images
+- Contact form
+- Gatsby GraphQL
+- MDX
+- Responsive design
 
-    ```shell
-    # create a new Gatsby site using the minimal starter
-    npm init gatsby
-    ```
+## Technologies
 
-2.  **Start developing.**
+- Gatsby
+- React
+- JavaScript
+- GraphQL
+- MDX
+- CSS Modules
 
-    Navigate into your new site’s directory and start it up.
+## Run Locally
 
-    ```shell
-    cd my-gatsby-site/
-    npm run develop
-    ```
+```shell
+npm install
+npm run develop
+```
 
-3.  **Open the code and start customizing!**
+Development URL:
 
-    Your site is now running at http://localhost:8000!
+```text
+http://localhost:8000
+```
 
-    Edit `src/pages/index.js` to see your site update in real-time!
+## Build
 
-4.  **Learn more**
+```shell
+npm run build
+```
 
-    - [Documentation](https://www.gatsbyjs.com/docs/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Tutorials](https://www.gatsbyjs.com/docs/tutorial/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Guides](https://www.gatsbyjs.com/docs/how-to/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [API Reference](https://www.gatsbyjs.com/docs/api-reference/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Plugin Library](https://www.gatsbyjs.com/plugins?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
-    - [Cheat Sheet](https://www.gatsbyjs.com/docs/cheat-sheet/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter)
+## Production Preview
 
-## 🚀 Quick start (Netlify)
+```shell
+npm run serve
+```
 
-Deploy this starter with one click on [Netlify](https://app.netlify.com/signup):
+## Deployment
 
-[<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" />](https://app.netlify.com/start/deploy?repository=https://github.com/gatsbyjs/gatsby-starter-minimal)
+After deployment is completed, this project is intended to be deployed with
+Netlify through a GitHub repository.
+
+Use these Netlify build settings:
+
+- Build command: `npm run build`
+- Publish directory: `public`
