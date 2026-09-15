@@ -2,6 +2,8 @@
 
 A personal portfolio and blog built with Gatsby.
 
+Repository: https://github.com/mohadesehesmaeilzadeh/gatsby-personal-blog
+
 ## Features
 
 - Responsive personal website
