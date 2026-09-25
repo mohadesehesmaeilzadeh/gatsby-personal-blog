@@ -2,6 +2,7 @@ import * as React from "react"
 import { Link } from "gatsby"
 
 import Layout from "../components/Layout/Layout"
+import Seo from "../components/Seo/Seo"
 import * as styles from "./404.module.css"
 
 const NotFoundPage = () => {
@@ -20,12 +21,11 @@ const NotFoundPage = () => {
 
 export default NotFoundPage
 
-export const Head = () => (
-  <>
-    <title>Page Not Found | Mohadeseh</title>
-    <meta
-      name="description"
-      content="The page you are looking for does not exist."
-    />
-  </>
+export const Head = ({ location }) => (
+  <Seo
+    title="Page Not Found"
+    description="The page you are looking for does not exist."
+    pathname={location.pathname}
+    noIndex
+  />
 )
