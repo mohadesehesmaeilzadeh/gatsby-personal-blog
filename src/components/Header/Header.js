@@ -1,6 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
+import ThemeToggle from "../ThemeToggle/ThemeToggle"
 import * as styles from "./Header.module.css"
 
 const navigationLinks = [
@@ -15,21 +16,24 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles.inner}>
         <Link to="/" className={styles.siteName}>
-          Mohadeseh
+          Mohadeseh Esmaeilzadeh
         </Link>
 
-        <nav className={styles.nav} aria-label="Main navigation">
-          {navigationLinks.map(link => (
-            <Link
-              key={link.path}
-              to={link.path}
-              className={styles.navLink}
-              activeClassName={styles.activeNavLink}
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
+        <div className={styles.controls}>
+          <nav className={styles.nav} aria-label="Main navigation">
+            {navigationLinks.map(link => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={styles.navLink}
+                activeClassName={styles.activeNavLink}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   )
