@@ -1,28 +1,14 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { graphql, Link } from "gatsby"
 
+import ArticleCard from "../components/ArticleCard/ArticleCard"
 import Layout from "../components/Layout/Layout"
+import Seo from "../components/Seo/Seo"
 import * as styles from "./index.module.css"
 
-const quickLinks = [
-  {
-    title: "Blog",
-    text: "Read my latest articles.",
-    path: "/blog",
-  },
-  {
-    title: "About",
-    text: "Learn more about me.",
-    path: "/about",
-  },
-  {
-    title: "Contact",
-    text: "Get in touch with me.",
-    path: "/contact",
-  },
-]
+const IndexPage = ({ data }) => {
+  const latestArticles = data.allMdx.nodes
 
-const IndexPage = () => {
   return (
     <Layout>
       <section className={styles.hero}>
@@ -45,33 +31,65 @@ const IndexPage = () => {
         </div>
 
         <div className={styles.heroVisual} aria-hidden="true">
-          <div className={styles.initials}>ME</div>
-          <p>React</p>
-          <span>Responsive websites</span>
+          <div className={styles.visualHeader}>
+            <div className={styles.initials}>ME</div>
+            <span>frontend-profile.js</span>
+          </div>
+          <dl>
+            <div>
+              <dt>Focus</dt>
+              <dd>React interfaces</dd>
+            </div>
+            <div>
+              <dt>Values</dt>
+              <dd>Clarity and accessibility</dd>
+            </div>
+            <div>
+              <dt>Learning</dt>
+              <dd>Modern web architecture</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section className={styles.latestPosts} aria-labelledby="latest-posts-title">
+        <div className={styles.sectionHeading}>
+          <div>
+            <p className={styles.sectionLabel}>From the blog</p>
+            <h2 id="latest-posts-title">Latest articles</h2>
+          </div>
+          <Link to="/blog" className={styles.textLink}>
+            View all articles &rarr;
+          </Link>
+        </div>
+
+        <div className={styles.articleGrid}>
+          {latestArticles.map(article => (
+            <ArticleCard
+              key={article.id}
+              title={article.frontmatter.title}
+              date={article.frontmatter.date}
+              description={article.frontmatter.description}
+              slug={article.frontmatter.slug}
+              image={article.frontmatter.cover}
+              tags={article.frontmatter.tags}
+              category={article.frontmatter.category}
+              headingLevel={3}
+            />
+          ))}
         </div>
       </section>
 
       <section className={styles.introSection}>
-        <h2>About this website</h2>
+        <p className={styles.sectionLabel}>About this site</p>
+        <h2>Learning in public, one interface at a time</h2>
         <p>
-          This website is where I share what I'm learning, projects I'm working
-          on, and articles about frontend development.
+          I share practical notes from building responsive interfaces with
+          React, Gatsby, and the modern web platform.
         </p>
         <Link to="/about" className={styles.textLink}>
-          Learn more about me &rarr;
+          More about me &rarr;
         </Link>
-      </section>
-
-      <section className={styles.quickLinks} aria-labelledby="quick-links-title">
-        <h2 id="quick-links-title">Explore</h2>
-        <div className={styles.cardGrid}>
-          {quickLinks.map(link => (
-            <Link key={link.path} to={link.path} className={styles.card}>
-              <h3>{link.title}</h3>
-              <p>{link.text}</p>
-            </Link>
-          ))}
-        </div>
       </section>
     </Layout>
   )
@@ -79,12 +97,39 @@ const IndexPage = () => {
 
 export default IndexPage
 
-export const Head = () => (
-  <>
-    <title>Mohadeseh | Frontend Developer</title>
-    <meta
-      name="description"
-      content="Personal website and blog of Mohadeseh, a frontend developer."
-    />
-  </>
-)
+export const query = graphql`
+  query HomePageQuery {
+    allMdx(
+      filter: { frontmatter: { published: { eq: true } } }
+      sort: { frontmatter: { date: DESC } }
+      limit: 3
+    ) {
+      nodes {
+        id
+        frontmatter {
+          title
+          date(formatString: "MMMM D, YYYY")
+          description
+          slug
+          tags
+          category
+          published
+          cover {
+            childImageSharp {
+              gatsbyImageData(
+                width: 700
+                aspectRatio: 1.7778
+                quality: 82
+                layout: CONSTRAINED
+                placeholder: BLURRED
+                formats: [AUTO, WEBP, AVIF]
+              )
+            }
+          }
+        }
+      }
+    }
+  }
+`
+
+export const Head = ({ location }) => <Seo pathname={location.pathname} />
