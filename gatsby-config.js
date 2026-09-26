@@ -2,18 +2,20 @@ const siteUrl =
   process.env.SITE_URL ||
   process.env.URL ||
   process.env.DEPLOY_PRIME_URL ||
-  "http://localhost:8000"
+  "http://localhost:8000";
 
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
 module.exports = {
+  pathPrefix: "/gatsby-personal-blog",
+
   siteMetadata: {
     title: "Mohadeseh Esmaeilzadeh | Frontend Developer",
     description:
       "Frontend development notes, projects, and practical lessons from Mohadeseh Esmaeilzadeh.",
     author: "Mohadeseh Esmaeilzadeh",
-    siteUrl,
+    siteUrl: "https://mohadesehesmaeilzadeh.github.io/gatsby-personal-blog",
     language: "en",
   },
   plugins: [
@@ -76,35 +78,36 @@ module.exports = {
               }
             `,
             serialize: ({ query: { site, allMdx } }) =>
-              allMdx.nodes.map(node => {
+              allMdx.nodes.map((node) => {
                 const postPath = node.frontmatter.slug.endsWith("/")
                   ? node.frontmatter.slug
-                  : `${node.frontmatter.slug}/`
+                  : `${node.frontmatter.slug}/`;
                 const postUrl = new URL(
                   postPath,
-                  site.siteMetadata.siteUrl
-                ).toString()
-                const categories = [...new Set([
-                  ...(node.frontmatter.tags || []),
-                  ...(node.frontmatter.category
-                    ? [node.frontmatter.category]
-                    : []),
-                ])]
+                  site.siteMetadata.siteUrl,
+                ).toString();
+                const categories = [
+                  ...new Set([
+                    ...(node.frontmatter.tags || []),
+                    ...(node.frontmatter.category
+                      ? [node.frontmatter.category]
+                      : []),
+                  ]),
+                ];
 
                 return {
                   title: node.frontmatter.title,
-                  description:
-                    node.frontmatter.description || node.excerpt,
+                  description: node.frontmatter.description || node.excerpt,
                   date: node.frontmatter.date,
                   url: postUrl,
                   guid: postUrl,
                   categories,
                   author: site.siteMetadata.author,
-                }
+                };
               }),
           },
         ],
       },
     },
   ],
-}
+};
