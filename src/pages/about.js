@@ -1,8 +1,9 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
 
 import Layout from "../components/Layout/Layout"
-import profilePhoto from "../images/profile.jpg"
+import Seo from "../components/Seo/Seo"
 import * as styles from "./about.module.css"
 
 const skills = [
@@ -17,15 +18,82 @@ const skills = [
   "Gatsby",
 ]
 
+const projects = [
+  {
+    title: "NebulaDesk",
+    type: "Interactive portfolio",
+    description:
+      "A browser-based operating system with a window manager, searchable Start Menu, portfolio apps, themes, and persistent preferences.",
+    technologies: ["React 19", "Vite", "Canvas API"],
+    href: "https://github.com/mohadesehesmaeilzadeh/nebula-desk",
+  },
+  {
+    title: "Bookloom",
+    type: "Reading tracker",
+    description:
+      "A local-first personal library with Open Library search, reading sessions, analytics, backups, and English/Persian support.",
+    technologies: ["React 19", "Recharts", "Open Library API"],
+    href: "https://github.com/mohadesehesmaeilzadeh/bookloom",
+  },
+  {
+    title: "NextStore",
+    type: "E-commerce",
+    description:
+      "A responsive storefront with server-rendered products, search and filters, a persistent Redux cart, guarded routes, and demo checkout.",
+    technologies: ["Next.js 16", "Redux Toolkit", "GraphQL"],
+    href: "https://github.com/mohadesehesmaeilzadeh/nextjs-store",
+  },
+  {
+    title: "Crypto Price Tracker",
+    type: "Live data application",
+    description:
+      "A responsive tracker for live cryptocurrency prices, market data, search, error states, and automatic refreshes.",
+    technologies: ["React", "Kraken API", "Fetch API"],
+    href: "https://github.com/mohadesehesmaeilzadeh/crypto-price-tracker",
+  },
+  {
+    title: "STM32 Mastermind",
+    type: "Embedded game",
+    description:
+      "A timed bomb-defusal game using USART, LCD, interrupts, LEDs, a seven-segment display, and a buzzer on STM32F401.",
+    technologies: ["C", "STM32F401", "Proteus"],
+    href: "https://github.com/mohadesehesmaeilzadeh/stm32-mastermind-game",
+  },
+  {
+    title: "Vending Machine FSM",
+    type: "Digital systems",
+    description:
+      "A Verilog vending-machine controller with purchase, change, and refund states, plus an interactive web demo of the FSM.",
+    technologies: ["Verilog", "ModelSim", "JavaScript"],
+    href:
+      "https://github.com/mohadesehesmaeilzadeh/verilog-vending-machine-fsm",
+  },
+]
+
+const ExternalLinkIcon = () => (
+  <svg
+    className={styles.externalIcon}
+    viewBox="0 0 24 24"
+    aria-hidden="true"
+  >
+    <path d="M7 17 17 7M9 7h8v8" />
+  </svg>
+)
+
 const AboutPage = () => {
   return (
     <Layout>
       <section className={styles.hero}>
         <div className={styles.imageWrap}>
-          <img
-            src={profilePhoto}
-            alt="Mohadeseh"
+          <StaticImage
+            src="../images/profile.jpg"
+            alt="Portrait of Mohadeseh Esmaeilzadeh"
             className={styles.profileImage}
+            width={760}
+            quality={85}
+            placeholder="blurred"
+            formats={["auto", "webp", "avif"]}
+            loading="eager"
           />
         </div>
 
@@ -64,6 +132,60 @@ const AboutPage = () => {
         </div>
       </section>
 
+      <section id="projects" className={styles.projectsSection}>
+        <div className={styles.sectionHeader}>
+          <div>
+            <p className={styles.sectionEyebrow}>Selected work</p>
+            <h2>Projects I've built</h2>
+            <p>
+              A mix of frontend products and engineering projects—from
+              interactive React experiences to embedded systems.
+            </p>
+          </div>
+          <a
+            className={styles.allProjectsLink}
+            href="https://github.com/mohadesehesmaeilzadeh?tab=repositories"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View all repositories
+            <ExternalLinkIcon />
+          </a>
+        </div>
+
+        <ul className={styles.projectGrid}>
+          {projects.map((project, index) => (
+            <li key={project.title}>
+              <a
+                className={styles.projectCard}
+                href={project.href}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <span className={styles.projectTopline}>
+                  <span className={styles.projectNumber}>
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className={styles.projectType}>{project.type}</span>
+                </span>
+                <span className={styles.projectTitleRow}>
+                  <span className={styles.projectTitle}>{project.title}</span>
+                  <ExternalLinkIcon />
+                </span>
+                <span className={styles.projectDescription}>
+                  {project.description}
+                </span>
+                <span className={styles.projectTech}>
+                  {project.technologies.map(technology => (
+                    <span key={technology}>{technology}</span>
+                  ))}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       <section className={styles.section}>
         <h2>Currently Learning</h2>
         <p>
@@ -93,12 +215,10 @@ const AboutPage = () => {
 
 export default AboutPage
 
-export const Head = () => (
-  <>
-    <title>About | Mohadeseh</title>
-    <meta
-      name="description"
-      content="Learn more about Mohadeseh, a frontend developer."
-    />
-  </>
+export const Head = ({ location }) => (
+  <Seo
+    title="About"
+    description="Learn more about Mohadeseh, a frontend developer."
+    pathname={location.pathname}
+  />
 )

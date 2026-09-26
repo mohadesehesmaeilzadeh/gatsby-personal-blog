@@ -8,9 +8,14 @@ import * as styles from "./Layout.module.css"
 const Layout = ({ children }) => {
   return (
     <div className={styles.page}>
+      <a href="#main-content" className={styles.skipLink}>
+        Skip to main content
+      </a>
       <Header />
 
-      <main className={styles.main}>{children}</main>
+      <main id="main-content" className={styles.main} tabIndex={-1}>
+        {children}
+      </main>
 
       <Footer />
     </div>

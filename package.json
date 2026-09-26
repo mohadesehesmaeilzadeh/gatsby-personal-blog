@@ -2,14 +2,18 @@
   "name": "mohadeseh-personal-blog",
   "version": "1.0.0",
   "private": true,
-  "description": "mohadeseh-personal-blog",
-  "author": "mohadesehesmaeilzadeh",
+  "description": "Personal frontend development blog by Mohadeseh Esmaeilzadeh",
+  "author": "Mohadeseh Esmaeilzadeh",
   "keywords": [
-    "gatsby"
+    "gatsby",
+    "frontend-development",
+    "react",
+    "mdx"
   ],
   "scripts": {
     "develop": "gatsby develop",
     "start": "gatsby develop",
+    "test": "node --test",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
@@ -17,9 +21,11 @@
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
     "gatsby": "^5.14.6",
+    "gatsby-plugin-feed": "^5.16.0",
     "gatsby-plugin-image": "^3.16.0",
     "gatsby-plugin-mdx": "^5.16.0",
     "gatsby-plugin-sharp": "^5.16.0",
+    "gatsby-plugin-sitemap": "^6.16.0",
     "gatsby-source-filesystem": "^5.16.0",
     "gatsby-transformer-sharp": "^5.16.0",
     "react": "^18.2.0",

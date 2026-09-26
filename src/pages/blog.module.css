@@ -1,19 +1,132 @@
 .header {
   max-width: 760px;
-  padding: 32px 0 48px;
+  padding: 16px 0 48px;
 }
 
 .header h1 {
   margin: 0;
   color: var(--color-text);
-  font-size: 3rem;
-  line-height: 1.15;
+  font-size: clamp(2.4rem, 5vw, 3.5rem);
+  letter-spacing: -0.045em;
+  line-height: 1.1;
 }
 
 .header p {
   margin: 18px 0 0;
   color: var(--color-muted);
   font-size: 1.125rem;
+}
+
+.searchPanel {
+  max-width: 760px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  background: var(--color-surface);
+  box-shadow: 0 1px 0 rgba(23, 32, 51, 0.03);
+  padding: 26px;
+}
+
+.searchPanel label {
+  display: block;
+  color: var(--color-text);
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.searchPanel > p {
+  margin: 6px 0 0;
+  color: var(--color-muted);
+}
+
+.searchControls {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.searchControls input {
+  min-height: 48px;
+  min-width: 0;
+  flex: 1;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  padding: 10px 14px;
+}
+
+.searchControls input:focus {
+  border-color: var(--color-accent);
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.searchControls button,
+.emptyState button {
+  min-height: 44px;
+  border: 1px solid var(--color-accent);
+  border-radius: 10px;
+  background: var(--color-accent);
+  color: var(--color-button-text);
+  cursor: pointer;
+  padding: 9px 16px;
+  font-weight: 700;
+}
+
+.searchControls button:hover,
+.searchControls button:focus,
+.emptyState button:hover,
+.emptyState button:focus {
+  border-color: var(--color-accent-dark);
+  background: var(--color-accent-dark);
+  color: var(--color-surface);
+}
+
+.taxonomyNav {
+  display: grid;
+  grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.25fr);
+  gap: 24px;
+  margin: 32px 0;
+}
+
+.taxonomyGroup h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1rem;
+}
+
+.taxonomyGroup > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.taxonomyGroup a {
+  display: inline-flex;
+  min-height: 38px;
+  align-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  background: var(--color-surface);
+  color: var(--color-muted);
+  padding: 6px 11px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.taxonomyGroup a:hover,
+.taxonomyGroup a:focus {
+  border-color: var(--color-accent);
+  background: var(--color-accent-soft);
+  color: var(--color-accent-strong);
+}
+
+.resultsSummary {
+  margin: 0 0 20px;
+  color: var(--color-muted);
+  font-weight: 700;
 }
 
 .articleGrid {
@@ -26,10 +139,31 @@
 .emptyState {
   margin: 0;
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: 14px;
   background: var(--color-surface);
   color: var(--color-muted);
   padding: 24px;
+}
+
+.emptyState h2 {
+  margin: 0;
+  color: var(--color-text);
+  font-size: 1.35rem;
+}
+
+.emptyState p {
+  margin: 8px 0 0;
+}
+
+.emptyState button {
+  margin-top: 18px;
+}
+
+.searchControls button:focus-visible,
+.emptyState button:focus-visible,
+.taxonomyGroup a:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
 }
 
 @media (max-width: 768px) {
@@ -47,6 +181,22 @@
 
   .articleGrid {
     grid-template-columns: 1fr;
+  }
+
+  .searchPanel {
+    padding: 20px;
+  }
+
+  .searchControls {
+    flex-direction: column;
+  }
+
+  .taxonomyNav {
+    grid-template-columns: 1fr;
+  }
+
+  .searchControls button {
+    width: 100%;
   }
 }
 
